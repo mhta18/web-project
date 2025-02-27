@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item.title }}</title>
+    <link rel="stylesheet" href="{% static 'auctions/style_page_list.css' %}">
+</head>
+<body>
+
+    <div class="listing-container">
+        {% if item.is_closed %}
+            <p class="list-closed">❌ This listing is closed!</p>
+            <p class="price-section">💰 Highest Bid: ${{ item.current_price }} by {{ item.winner }}</p>
+        {% else %}
+            <h1>{{ item.title }}</h1>
+
+            {% if item.image_url %}
+                <img class="listing-image" src="{{ item.image_url }}" alt="{{ item.title }}">
+            {% endif %}
+
+            <p class="price-section">💲 Current Price: ${{ item.current_price }}</p>
+            <p class="description">{{ item.description }}</p>
+
+
+            <form class="bid-form" action="{% url 'save_bid' item.list_num %}" method="POST">
+                {% csrf_token %}
+                <h4>Enter bid (💰${{ item.current_price }} or more)</h4>
+                <input type="text" name="bid_suggestion" placeholder="Place your bid">
+                <button type="submit">Place Bid</button>
+
+            <form class="comment-form" action="{% url 'submit_comment' item.list_num %}" method="POST">
+                {% csrf_token %}
+                <h4>Enter your comment ✍️</h4>
+                <input type="text" name="comment" placeholder="Place your comment">
+                <button type="submit">Submit</button>
+            </form>
+
+            <a class="watchlist-link" href="{% url 'add_to_watchlist' item.list_num %}">⭐ Add to Watchlist</a>
+
+            <div class="bid-list">
+                <h2>📜 Bids for {{ item.title }}</h2>
+                <ul>
+                    {% for bid in item_bids %}
+                        <li>👤 {{ bid.user.username }} bid ${{ bid.amount }} at {{ bid.timestamp }}</li>
+                    {% empty %}
+                        <li>No bids yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <form class="close-listing-form" action="{% url 'list_closed' item.list_num %}" method="POST">
+                {% csrf_token %}
+                <button type="submit"> Close Listing</button>
+            </form>
+        {% endif %}
+        <br>
+        <a class="back-link" href="/">⬅️ Back to Listings</a>
+
+    </div>
+
+</body>
+</html>

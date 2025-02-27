@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'auctions/style_layout.css' %}">
+
+    </head>
+    <body>
+        
+        <h1>Auctions</h1>
+        <div>
+            {% if user.is_authenticated %}
+                Signed in as <strong>{{ user.username }}</strong>.
+            {% else %}
+               <h4> Not signed in. </h4>
+            {% endif %}
+        </div>
+        <ul class="navbar">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_new_list' %}">Create new list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Categories</a>
+                    <div class="dropdown">
+                        <a href="{% url 'filter_by_category' 'jewelry' %}">Jewelry</a>
+                        <a href="{% url 'filter_by_category' 'Gaming' %}">Gaming</a>
+                        <a href="{% url 'filter_by_category' 'Technology' %}">Technology</a>
+                        <a href="{% url 'filter_by_category' 'Home' %}">Home</a>
+                        <a href="{% url 'filter_by_category' 'Books' %}">Books</a>
+                    </div>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'watchlist' %}">WacthList</a>
+            </li>
+            <div class="auth-links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Log Out</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Log In</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+
+        </ul>
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

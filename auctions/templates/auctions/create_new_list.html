@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="new_list-container">
+    <h2>Create New List</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'create_new_list' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="">Title</label>
+            <input class="form-control" autofocus type="text" name="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="">Choose a Category</label>
+            <select name="category" id="">
+                <option value="Mototrs">Mototrs</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Home & Garden">Home & Garden</option>
+                <option value="Sporting goods">Sporting goods</option>
+                <option value="Jewerly & watches">Jewerly & watches</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Description</label>
+            <input class="form-control" type="text" name="description" placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label for="">Cost $</label>
+            <input class="form-control" type="number" name="cost" placeholder=" Starting Bid">
+        </div>
+        <div class="form-group">
+            <label for="">Image URL</label>
+            <input class="form-control" type="text" name="img" placeholder="https://example.com/">
+        </div>
+        <input class="btn-submit" type="submit" value="submit">
+    </form>
+</div>
+
+{% endblock %}

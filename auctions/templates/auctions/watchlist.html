@@ -1,0 +1,20 @@
+{% block body %}
+    <h2>Watchlist</h2>
+ 
+    <ul>
+    {% for listing in listings %}
+        <li>
+            <a href="/{{listing.list_num}}">{{ listing.title }}</a>
+            <p>Price: ${{ listing.current_price }}</p>
+            {% if listing.image_url %}
+                <img src="{{ listing.image_url }}" alt="{{ listing.title }}">
+                <a href="{% url 'remove_item' listing.list_num %}">remove item</a>
+            {% endif %}
+        </li>
+
+    {% endfor %}
+    <a href="{% url 'index' %}">Back to main page</a>
+    
+</ul>
+
+{% endblock %}
