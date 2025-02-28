@@ -9,7 +9,7 @@ body {
 
 body h1,h4{
     color: #343a40;
-    padding:0 20px;
+    padding:5px 20px;
 }
 
 body hr{
@@ -30,21 +30,25 @@ body hr{
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 1px 5px;
+    padding:  5px;
     font-weight: 500;
     transition: 0.3s;
 }
 
 .navbar a:hover {
     color: #f8f9fa;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* Category List */
+.navbar ul{
+    background-color: #333;
+}
+
 .nav-item {
     display: block;
-    margin: 10px 15px;
-    color: rgb(175, 60, 60);
+    margin: 10px;
+    color: white;
     text-decoration: none;
     font-weight: 500;
 }
@@ -62,46 +66,10 @@ body hr{
     text-decoration: none;
 }
 
-   /* Hide dropdown by default */
-.dropdown {
-     display: none;
-     position: absolute;
-     background-color: white;
-     min-width: 150px;
-     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-     top: 40px;
-     left: 0;
- }
-
-.dropdown a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-}
-
-.dropdown a:hover {
-    background-color: #ddd;
-}
-
-/* Use :focus-within to show the dropdown when the label is clicked */
-.category-container:focus-within .dropdown {
-    display: block;
-}
-
-/* Hide default checkbox */
-.dropdown-toggle {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-
 /* Authentication Links */
 .auth-links {
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 .auth-links a {
@@ -111,6 +79,7 @@ body hr{
     border-radius: 5px;
     text-decoration: none;
     font-weight: 500;
+    margin-right: 15px;
 }
 
 .auth-links a:hover {
@@ -120,10 +89,12 @@ body hr{
 
 /* Container */
 .container {
-    max-width: 80%;
+    border-radius: 10px;
+    background-color: #929DA0;
+    max-width: 100%;
     margin: auto;
     padding: 10px;
-    text-align: center;
+
 }
 
 /* Listings Grid */
@@ -191,9 +162,9 @@ body hr{
 
 /* Login Form Container */
 .login-container {
-    background: #fff;
+    background: #b6b2b2;
     padding: 50px;
-    height: 200px;
+    height: 300px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 350px;
@@ -258,7 +229,7 @@ body hr{
 .new_list-container {
     background: #fff;
     padding: 50px;
-    height: 500px;
+    height: 6 00px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 50%;
